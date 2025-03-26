@@ -16,6 +16,16 @@ if __name__ == '__main__':
     parser.add_argument('--answer_path', type=str, default="./answer_dict_val.json", help="Answer file path.")
     args = parser.parse_args()
 
+    # 确保 output_path 的目录存在
+    output_dir = os.path.dirname(args.output_path)
+    if output_dir and not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    # 确保 output_path 文件存在（如果不存在则创建空 JSON）
+    if not os.path.exists(args.output_path):
+        with open(args.output_path, 'w') as f:
+            json.dump({}, f)  # 初始化为空 JSON
+
     output_dict = json.load(open(args.output_path))
     answer_dict = json.load(open(args.answer_path))
 
