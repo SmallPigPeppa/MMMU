@@ -43,6 +43,16 @@ def call_llava_engine_df(args, sample, model, tokenizer=None, processor=None):
     input_ids = tokenizer_image_token(prompt, tokenizer, IMAGE_TOKEN_INDEX, return_tensors='pt').unsqueeze(0).cuda()
     image = sample['image']
     if image is not None:
+        # output_ids = model.generate(
+        #     input_ids,
+        #     images=image.unsqueeze(0).half().cuda(),
+        #     do_sample=True,
+        #     temperature=1,
+        #     top_p=None,
+        #     num_beams=5,
+        #     max_new_tokens=128,
+        #     use_cache=True)
+
         output_ids = model.generate(
             input_ids,
             images=image.unsqueeze(0).half().cuda(),
@@ -51,7 +61,7 @@ def call_llava_engine_df(args, sample, model, tokenizer=None, processor=None):
             top_p=None,
             num_beams=5,
             max_new_tokens=128,
-            use_cache=True)
+            use_cache=False)
 
         # input_token_len = input_ids.shape[1]
         # import pdb; pdb.set_trace()
