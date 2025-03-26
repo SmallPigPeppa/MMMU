@@ -29,6 +29,8 @@ if __name__ == '__main__':
     output_dict = json.load(open(args.output_path))
     answer_dict = json.load(open(args.answer_path))
 
+    import pdb;pdb.set_trace()
+
     # group by category
     output_dict_w_cat = {}
     for data_id, parsed_pred in output_dict.items():
