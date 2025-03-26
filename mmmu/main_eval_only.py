@@ -29,7 +29,7 @@ if __name__ == '__main__':
     output_dict = json.load(open(args.output_path))
     answer_dict = json.load(open(args.answer_path))
 
-    import pdb;pdb.set_trace()
+
 
     # group by category
     output_dict_w_cat = {}
@@ -47,6 +47,7 @@ if __name__ == '__main__':
             answer_dict_w_cat.update({category: {}})
         answer_dict_w_cat[category].update({data_id: parsed_pred})
 
+    import pdb;pdb.set_trace()
     evaluation_result = {}
 
     for category in CAT_SHORT2LONG.values():
